@@ -28,11 +28,16 @@ int main(int argc, char **argv)
   }
   // Repeatly read and print entries
   while ((dp = readdir (dir)) != NULL) {
-    // print file size
+    // print file size or <DIR>
     struct stat st;
     stat(dp->d_name, &st);
-    int size = st.st_size;
-    printf(" file size is %d,", size);
+    if (st.st_mode & S_IFDIR) {
+      printf(" <DIR>");
+    } else {
+      int size = st.st_size;
+      printf(" file size is %d,", size);
+    }
+
     // print file name
     printf(" %s\n", dp->d_name);
   } 
