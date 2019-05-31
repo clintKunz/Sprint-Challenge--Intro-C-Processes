@@ -3,6 +3,7 @@
 #include <dirent.h>
 #include <libgen.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 /**
  * Main
@@ -10,13 +11,15 @@
 int main(int argc, char **argv)
 {
   // Parse command line
+  //printf("%s\n", argv[0]);
+  //printf("%s\n", argv[1]);
   
   // Open directory
   DIR *dir;
   struct dirent *dp;
 
-  if ((dir = opendir (".")) == NULL) {
-    perror ("Cannot open .");
+  if ((dir = opendir (argv[1])) == NULL) {
+    perror ("Cannot open");
     exit (1);
   }
   // Repeatly read and print entries
