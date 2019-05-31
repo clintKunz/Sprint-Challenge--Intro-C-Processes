@@ -12,8 +12,11 @@
 int main(int argc, char **argv)
 {
   // Parse command line
-  //printf("%s\n", argv[0]);
-  //printf("%s\n", argv[1]);
+  printf("There are %d command line argument(s):\n", argc);
+
+  for (int i = 0; i < argc; i++) {
+    printf("   %s\n", argv[i]);
+  }
 
   // Open directory
   DIR *dir;
@@ -29,7 +32,7 @@ int main(int argc, char **argv)
     struct stat st;
     stat(dp->d_name, &st);
     int size = st.st_size;
-    printf("%d ", size);
+    printf(" file size is %d,", size);
     // print file name
     printf(" %s\n", dp->d_name);
   } 
